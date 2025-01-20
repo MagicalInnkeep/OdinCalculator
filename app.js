@@ -8,7 +8,7 @@ let varFunction='';
 let varFunctionDisplay=''
 let result=0;
 //Scope is tracker to know if we are filling in A,function or B.
-// 0: A; 1: B
+// 0: A; 1: B; 2 : PrevResult
 let currentScope=0; 
 let calcScreen = document.querySelector(".calcWindow");
 
@@ -56,9 +56,10 @@ function calculate(){
 
     //Update Window
     updateWindowResult()
-
     // Clean variables
     cleanVar();
+    varA = result;
+    currentScope=2;
 }
 
 function cleanVar(){
@@ -66,6 +67,7 @@ function cleanVar(){
         varA ='';
         varB ='';
         varFunction ='';
+        varFunctionDisplay='';
         currentScope = 0;
 }
 
@@ -81,12 +83,16 @@ function numberPressed(currValue){
     else if(currentScope==1){
         varB=varB+currValue;
     }
+    else{
+        varA=currValue;
+        currentScope=0;
+    }
     console.log(`A: ${varA} | B: ${varB}`);
     updateWindowVar();
 }
 
 function deletePressed(){
-    if(currentScope==0) {
+    if(currentScope!=1) {
         varA = varA.slice(0,-1);
     } 
     else if(currentScope==1){
