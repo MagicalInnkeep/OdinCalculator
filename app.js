@@ -36,6 +36,10 @@ function modulo(a,b){
     return Math.modulo(a,b);
 }
 
+function root(a,b){
+    return Math. sqrt(b);
+}
+
 function calculate(){
     // calculates the function which lives in the global scope named 'window'. 
     switch(currentScope){
@@ -130,7 +134,12 @@ calcButtons.addEventListener('click', (event) => {
             clean();
             cleanVar();
             break;
-        case "brackets": 
+        case "root":
+            varA='';
+            varFunction=target.id; 
+            varFunctionDisplay='√';
+            updateWindowVar()
+            currentScope=1;
             break;
         case "modulo":      
             varFunction=target.id; 
