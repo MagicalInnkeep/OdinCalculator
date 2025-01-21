@@ -7,6 +7,7 @@ let varB='';
 let varFunction=''; 
 let varFunctionDisplay=''
 let result=0;
+let resultDis=0;
 //Scope is tracker to know if we are filling in A,function or B.
 // 0: A; 1: B; 2 : PrevResult
 let currentScope=0; 
@@ -29,7 +30,12 @@ function multiply(a,b){
 }
 
 function divide(a,b){
+    if(b==0){
+        return "No!";
+    } 
+    else{
     return a/b;
+    }
 }
 
 function modulo(a,b){
@@ -99,6 +105,18 @@ function numberPressed(currValue){
     updateWindowVar();
 }
 
+function functionPressed(){
+    let tempVar= varFunction;
+    let tempVarDis = varFunctionDisplay;
+    if(varFunction!=''){
+        calculate();
+    }
+    varFunction =tempVar;
+    varFunctionDisplay= tempVarDis;
+    updateWindowVar()
+    currentScope=1;
+}
+
 function deletePressed(){
     if(currentScope!=1) {
         varA = varA.slice(0,-1);
@@ -120,8 +138,9 @@ function updateWindowVar(){
 function updateWindowResult(){
     updateWindowVar();
     const resultScr = document.createElement("p");
-    resultScr.textContent=`= ${result}`
-    calcScreen.appendChild(resultScr)
+    resultDis = Math.round(result*10000000000)/10000000000;
+    resultScr.textContent=`= ${resultDis}`;
+    calcScreen.appendChild(resultScr);
 }
 
 //--------------------------------
@@ -184,8 +203,7 @@ calcButtons.addEventListener('click', (event) => {
         case "minus": 
             varFunction=target.id; 
             varFunctionDisplay='-';
-            updateWindowVar()
-            currentScope=1;
+            functionPressed();
             break;
         case "number1":
             numberPressed("1");
