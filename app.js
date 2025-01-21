@@ -167,14 +167,12 @@ calcButtons.addEventListener('click', (event) => {
         case "modulo":      
             varFunction=target.id; 
             varFunctionDisplay='%';
-            updateWindowVar()
-            currentScope=1;
+            functionPressed();
             break;
         case "divide":      
             varFunction=target.id;
             varFunctionDisplay="/";
-            updateWindowVar()
-            currentScope=1; 
+            functionPressed();
             break;
         case "number7": 
             numberPressed("7");
@@ -188,8 +186,7 @@ calcButtons.addEventListener('click', (event) => {
         case "multiply":    
             varFunction=target.id; 
             varFunctionDisplay='*';
-            updateWindowVar()
-            currentScope=1;
+            functionPressed();
             break;
         case "number4":
             numberPressed("4");
@@ -217,8 +214,7 @@ calcButtons.addEventListener('click', (event) => {
         case "sum": 
             varFunction=target.id; 
             varFunctionDisplay='+';
-            updateWindowVar()
-            currentScope=1;
+            functionPressed();
             break;
         case "number0":
             numberPressed("0");
