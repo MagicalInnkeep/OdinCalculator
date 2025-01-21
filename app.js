@@ -82,10 +82,14 @@ function clean(){
 
 function numberPressed(currValue){
     if(currentScope==0) {
+        if(!(currValue=="." && varA.includes("."))){
         varA=varA+currValue;
+        }
     } 
     else if(currentScope==1){
+        if(!(currValue=="." && varB.includes("."))){
         varB=varB+currValue;
+        }
     }
     else{
         varA=currValue;
